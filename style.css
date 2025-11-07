@@ -1,0 +1,125 @@
+html {
+    font-family: "Fira Sans", sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    min-height: 100vh;
+    color: #020202;
+    background-image: linear-gradient(-20deg, #fbd7ed 0%, #bdf2f8 100%);
+    background-size: cover;
+
+}
+
+.heading-container {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 3%;
+    background: linear-gradient(to right, #bdf2f8, #d3ddde);
+    border-radius: 0 0 12px 12px;
+}
+
+.heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.downloadBtn {
+    color: #010101;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0.4rem 0.3rem;
+    font-size: 1rem;
+}
+
+
+.addBtn {
+    margin-right: 5%;
+    color: #010101;
+    background: transparent;
+    border: none;
+    padding: 0.2rem 0.6rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.heading-container button:hover {
+    background-color: #FAFAFA;
+    border-radius: 20%;
+}
+
+.notes-container {
+    margin: 1%;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    align-items: start;
+}
+
+.note {
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.note:hover {
+    transform: translateY(-3px);
+}
+
+.note-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.note-title {
+  font-weight: lighter;
+  font-size: 16px;
+  outline: none;
+  cursor: text;
+  border: none;
+  background: transparent;
+}
+
+.note-title:empty:before {
+  content: attr(placeholder);
+  color: #999;
+  pointer-events: none;
+}
+
+
+.note-actions button {
+    border: none;
+    padding: 2px 5px;
+    margin: 5px 3px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.note-actions button:hover {
+    background-color: rgb(195, 220, 249);
+    border-radius: 20%;
+}
+
+.note-body textarea {
+    width: 100%;
+    height: 120px;
+    border: none;
+    outline: none;
+    font-size: small;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    resize: vertical;
+}
+
