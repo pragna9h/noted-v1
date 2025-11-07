@@ -29,8 +29,6 @@ async function createNote(noteData) {
     titleElement.textContent = data.title;
     textareaEl.value = data.content;
 
-    // Fade-in animation
-    noteElement.classList.add("fade-in");
     notesDiv.appendChild(noteElement);
     textareaEl.focus();
 
@@ -93,6 +91,14 @@ function downloadNotes () {
   a.click();
   URL.revokeObjectURL(url);
 }
+
+// Keyboard shortcut: Ctrl + = to create a new note
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey && (event.key === "=" || event.key === "+")) {
+    event.preventDefault(); // prevent any browser zoom shortcut
+    createNote(); // call your existing note creation function
+  }
+});
 
 // Add “Download All” Button to UI
 downloadBtn.addEventListener("click", downloadNotes);
