@@ -57,6 +57,28 @@ async function createNote(noteData) {
     titleElement.addEventListener("input", handleChange);
     textareaEl.addEventListener("input", handleChange);
 
+    // Auto-bullet on Enter key
+    textareaEl.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); // prevent normal newline
+
+        const start = textareaEl.selectionStart;
+        const end = textareaEl.selectionEnd;
+
+        // Insert newline + bullet
+        const bullet = "\n• ";
+        textareaEl.value =
+          textareaEl.value.substring(0, start) +
+          bullet +
+          textareaEl.value.substring(end);
+
+        // Move cursor to end of the bullet
+        textareaEl.selectionStart = textareaEl.selectionEnd = start + bullet.length;
+
+        handleChange(); // update your autosave
+      }
+    });
+
     // Only push if not already in array
     if (!notes.some(n => n.id === data.id)) notes.push(data);
     autoSave();
@@ -68,17 +90,17 @@ async function createNote(noteData) {
 
 
 
-function autoSave () {
-    localStorage.setItem("noted-app-notes", JSON.stringify(notes));
+function autoSave() {
+  localStorage.setItem("noted-app-notes", JSON.stringify(notes));
 }
 
-function loadNotes () {
-    const savedNotes = JSON.parse(localStorage.getItem("noted-app-notes") || "[]");
-    notes = [];
-    savedNotes.forEach(note => createNote(note) );
+function loadNotes() {
+  const savedNotes = JSON.parse(localStorage.getItem("noted-app-notes") || "[]");
+  notes = [];
+  savedNotes.forEach(note => createNote(note));
 }
 
-function downloadNotes () {
+function downloadNotes() {
   let allNotesOnApp = notes
     .map((n, i) => `Note ${i + 1}: ${n.title}\n${n.content}\n\n`)
     .join("");
